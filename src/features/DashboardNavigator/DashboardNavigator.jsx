@@ -48,29 +48,12 @@ const defaultDancer = '^(^_^)^';
 
 /* Render */
 export const DashboardNavigator = props => {
-  // TODO: Figure out what should be in a Context
-  // ==> and what should be handled locally
   const [isHovering, setIsHovering] = useState(false);
   const [dancerState, setDancerState] = useState({
     dancer: defaultDancer,
     count: 0
   });
   const [isNavExpanded, setIsNavExpanded] = useState(false);
-  const links = [
-    {
-      href: 'www.google.com',
-      label: 'No Evil Here'
-    },
-    {
-      href: 'www.wikipedia.com',
-      label: 'For Nerds',
-      isCenterLink: true
-    },
-    {
-      href: 'www.liar.com',
-      label: 'Learn to Lie'
-    }
-  ];
 
   /* Handlers */
   const handleMouseEnter = () => {
@@ -96,7 +79,6 @@ export const DashboardNavigator = props => {
       <Dancer dancer={dancerState.dancer} />
       <TextTesting size="s">{'Get down, bruh'}</TextTesting>
       <NavLinks
-        links={links}
         isNavExpanded={isNavExpanded}
         handleMouseEnter={handleMouseEnter}
         handleMouseLeave={handleMouseLeave}

@@ -1,24 +1,21 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
+import links from './navigationLinks.js';
 
 /* Components */
 const NavLinksContainer = styled.div`
   position: absolute;
-
   box-shadow: inset 1px 1px 62px lightblue, 1px 1px 62px lightblue;
-
   border: ${({ isNavExpanded }) =>
     isNavExpanded ? '50px solid rgba(255, 255, 255, 0.4);' : undefined};
 
   width: 150%;
   height: ${({ isNavExpanded }) => (isNavExpanded ? '140%' : '0px')};
-
   transition: height 400ms;
-
   border-radius: 1000px;
 `;
 
-// TODO: Implement Internal Routing
 const StyledList = styled.ul`
   list-style-type: none;
   display: flex;
@@ -28,7 +25,7 @@ const StyledList = styled.ul`
   font-size: 28px;
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
   color: black;
   text-decoration: none;
 `;
@@ -57,24 +54,19 @@ const StyledListItem = styled.li`
 `;
 
 /* Render */
-export const NavLinks = ({
-  links,
-  isNavExpanded,
-  handleMouseEnter,
-  handleMouseLeave
-}) => {
+export const NavLinks = ({ isNavExpanded, handleMouseEnter, handleMouseLeave }) => {
   return (
     <NavLinksContainer isNavExpanded={isNavExpanded}>
       {isNavExpanded && (
         <StyledList>
-          {links.map(({ href, label, isCenterLink }, idx) => (
+          {links.map(({ to, label, isCenterLink }, idx) => (
             <StyledListItem
               key={`${label}-${idx}`}
               isCenterLink={isCenterLink}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <StyledLink href={href}>{label}</StyledLink>
+              <StyledLink to={to}>{label}</StyledLink>
             </StyledListItem>
           ))}
         </StyledList>

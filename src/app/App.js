@@ -1,7 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { Route, Routes } from 'react-router';
 import ThemeProvider from './theme/ThemeProvider';
+
+/* Pages */
 import DashboardNavigator from '../features/DashboardNavigator';
+import LoginForm from '../features/LoginForm';
+import BrowseStocks from '../features/BrowseStocks';
 
 /* Style Me */
 const AppContainer = styled.div`
@@ -15,24 +20,15 @@ const AppContainer = styled.div`
   flex-direction: column;
 `;
 
-const HeadingText = styled.h1`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  margin-top: 100px;
-  font-size: 50px;
-`;
-
 function App() {
-  const MOCKED_TEXT = 'GunJS Stock Exchange';
-
   return (
     <ThemeProvider>
       <AppContainer>
-        {/* <HeadingText>{MOCKED_TEXT}</HeadingText> */}
-        <DashboardNavigator />
+        <Routes>
+          <Route path="/" element={<DashboardNavigator />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/browse-stocks" element={<BrowseStocks />} />
+        </Routes>
       </AppContainer>
     </ThemeProvider>
   );

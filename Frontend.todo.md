@@ -6,10 +6,14 @@
 - Configure import aliases (ie. components/_ vs. ../../../components/_)
 - Configure a workaround for the styles in index.html
 
-## Implement Internal Routing
+## Implement Internal Routing (DONE)
 
-- Will need a "content" area since Nav is in center of the screen
-- Potentially expand Nav to take up width/height 100% so it can animate to fill the page?
+~- Will need a "content" area since Nav is in center of the screen~
+~- Potentially expand Nav to take up width/height 100% so it can animate to fill the page?~
+
+## Implement some type of base global Nav or "Return Home" button
+
+- Do it
 
 ## Implement Login/Logout UI
 
