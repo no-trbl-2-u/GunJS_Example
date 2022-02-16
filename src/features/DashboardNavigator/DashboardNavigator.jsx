@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import React, { useState } from 'react';
 import NavLinks from './components/NavLinks';
+import Dancer from './components/Dancer';
 
 // TODO: Replace some values with { theme }
 const DashboardContainer = styled.div`
@@ -10,8 +11,8 @@ const DashboardContainer = styled.div`
   position: relative;
   z-index: 1;
 
-  height: 40%;
-  width: 30%;
+  height: 50%;
+  width: 50%;
 
   display: flex;
   justify-content: center;
@@ -37,20 +38,23 @@ const TextTesting = styled.div`
 `;
 
 /* Constants */
+/* Helpers */
+const isEven = n => n % 2 === 0;
+
+/* Constants */
 const rightDancer = '(> -_-)>';
 const leftDancer = '<(-_- <)';
 const defaultDancer = '^(^_^)^';
-
-/* Helpers */
-const isEven = n => n % 2 === 0;
 
 /* Render */
 export const DashboardNavigator = props => {
   // TODO: Figure out what should be in a Context
   // ==> and what should be handled locally
   const [isHovering, setIsHovering] = useState(false);
-  const [count, setCount] = useState(0);
-  const [currentDancer, setCurrentDancer] = useState(defaultDancer);
+  const [dancerState, setDancerState] = useState({
+    dancer: defaultDancer,
+    count: 0
+  });
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const links = [
     {
@@ -71,13 +75,15 @@ export const DashboardNavigator = props => {
   /* Handlers */
   const handleMouseEnter = () => {
     setIsHovering(true);
-    setCount(c => c + 1);
-    setCurrentDancer(isEven(count) ? leftDancer : rightDancer);
+    setDancerState(({ count, dancer }) => ({
+      dancer: isEven(count) ? leftDancer : rightDancer,
+      count: count + 1
+    }));
   };
 
   const handleMouseLeave = () => {
     setIsHovering(false);
-    setCurrentDancer(defaultDancer);
+    setDancerState(state => ({ ...state, dancer: defaultDancer }));
   };
 
   return (
@@ -87,7 +93,7 @@ export const DashboardNavigator = props => {
       onClick={() => setIsNavExpanded(cur => !cur)}
     >
       <TextTesting>{'Welcome'}</TextTesting>
-      <TextTesting>{currentDancer}</TextTesting>
+      <Dancer dancer={dancerState.dancer} />
       <TextTesting size="s">{'Get down, bruh'}</TextTesting>
       <NavLinks
         links={links}

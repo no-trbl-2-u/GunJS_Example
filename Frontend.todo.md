@@ -2,15 +2,14 @@
 
 ## SETUP
 
-- ~Install Emotion~
 - Configure Typescript
 - Configure import aliases (ie. components/_ vs. ../../../components/_)
 - Configure a workaround for the styles in index.html
 
-## Implement Header
+## Implement Internal Routing
 
-- Is Sticky
-- Has Link to login/logout (Implement Later)
+- Will need a "content" area since Nav is in center of the screen
+- Potentially expand Nav to take up width/height 100% so it can animate to fill the page?
 
 ## Implement Login/Logout UI
 
